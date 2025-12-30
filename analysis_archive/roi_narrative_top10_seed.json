@@ -1,0 +1,92 @@
+[
+  {
+    "from": "Payer",
+    "to": "Provider",
+    "label": "post-payment audits",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "CRO",
+    "to": "PharmaMfg",
+    "label": "SDV & audits",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "CMO",
+    "to": "PharmaMfg",
+    "label": "GMP audits",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "Regulator",
+    "to": "PharmaMfg",
+    "label": "inspections",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "Regulator",
+    "to": "Hospital",
+    "label": "inspections",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "Regulator",
+    "to": "MedTech",
+    "label": "inspections",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "Regulator",
+    "to": "Lab",
+    "label": "CLIA inspections",
+    "type": "audit",
+    "roi_normalized": 390015.1927117761,
+    "narrativeScore": 0.7,
+    "combined": 273010.6348982433
+  },
+  {
+    "from": "PBM",
+    "to": "PharmaMfg",
+    "label": "rebate adjudication reports",
+    "type": "data",
+    "roi_normalized": 250000,
+    "narrativeScore": 0.7,
+    "combined": 175000
+  },
+  {
+    "from": "PharmaMfg",
+    "to": "CRO",
+    "label": "trial data",
+    "type": "data",
+    "roi_normalized": 250000,
+    "narrativeScore": 0.7,
+    "combined": 175000
+  },
+  {
+    "from": "PharmaMfg",
+    "to": "CMO",
+    "label": "batch specs",
+    "type": "data",
+    "roi_normalized": 250000,
+    "narrativeScore": 0.7,
+    "combined": 175000
+  }
+]

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a78bfa;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Health cross + data flow pipeline symbol -->
+  <circle cx="50" cy="50" r="48" fill="url(#purpleGrad)"/>
+  <g fill="white" opacity="0.95">
+    <!-- Cross/health symbol -->
+    <rect x="43" y="25" width="14" height="50" rx="2"/>
+    <rect x="25" y="43" width="50" height="14" rx="2"/>
+    <!-- Data flow nodes -->
+    <circle cx="30" cy="30" r="4"/>
+    <circle cx="70" cy="30" r="4"/>
+    <circle cx="30" cy="70" r="4"/>
+    <circle cx="70" cy="70" r="4"/>
+  </g>
+</svg>
+
