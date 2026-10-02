@@ -1,14 +1,8 @@
 # Disclaimer
 
-**For Educational and Modeling Purposes Only**
+This project models trust friction between roles in US healthcare. It is for study and discussion.
 
-This project, "Health Ecosystem Trust Model," is a conceptual tool designed to model and visualize economic friction, trust gaps, and potential conflicts of interest within the healthcare ecosystem.
-
-1.  **Not Verified Data:** The default data seeded in this application (costs, friction scores, trust gaps) is illustrative and estimated based on public economic theories and aggregated market analysis. It does not represent verified financial audits or specific security vulnerabilities of any real-world organization.
-
-2.  **Opinionated Models:** The terminology used (e.g., "Trust Gap," "Cartel mechanisms") reflects specific economic perspectives on healthcare deregulation and market efficiency. These views are cited from external sources (such as the Mercatus Center, FMMA, etc.) and do not necessarily reflect the official position of the HealthSec Alliance or its members.
-
-3.  **No Security Advice:** This map is intended to identify *structural* trust issues (e.g., where incentives misalign), not *technical* security flaws. It should not be used as a substitute for a professional security assessment or audit.
-
-4.  **Open Source:** This is an open-source project provided "as is" without warranty of any kind.
-
+1. The data is illustrative. Every cost, friction score and trust gap in the seed was typed in by hand as an estimate. Nothing is measured, sourced or audited, and nothing describes a real organization.
+2. The scoring is a hand-weighted heuristic. It ranks flows for discussion; it does not compute a return or a payback time.
+3. The in-app control prompts and their citations are reminders for a reviewer. They are not security advice, legal advice or a compliance finding. A professional assessment is a separate piece of work.
+4. The software is provided as is, without warranty of any kind.
