@@ -13,25 +13,10 @@ import { DEFAULT_NARRATIVE, setSessionDefaultNarrative } from "@domain/flags";
 type Tab = "Inspector" | "Import/Export" | "Analysis" | "Provenance" | "Legend";
 
 export default function App() {
-  // #region agent log
-  try {
-    console.log('[DEBUG] App.tsx:18 App component rendering');
-    fetch('http://127.0.0.1:7243/ingest/805d96a4-16fd-497c-a6cf-f845abf2b95f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.tsx:18',message:'App component rendering',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run2',hypothesisId:'B'})}).catch((e)=>console.error('[DEBUG] Fetch failed:',e));
-  } catch (e) { console.error('[DEBUG] App.tsx:18 error:', e); }
-  // #endregion
   
   const [tab, setTab] = useState<Tab>("Inspector");
-  console.log('[DEBUG] App.tsx:25 Hooks initialized');
   
   const filters = useStore(s => s.filters);
-  console.log('[DEBUG] App.tsx:28 Store accessed, filters:', filters);
-  // #region agent log
-  try {
-    fetch('http://127.0.0.1:7243/ingest/805d96a4-16fd-497c-a6cf-f845abf2b95f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.tsx:25',message:'Store access successful',data:{filtersKeys:Object.keys(filters||{})},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  } catch (err) {
-    fetch('http://127.0.0.1:7243/ingest/805d96a4-16fd-497c-a6cf-f845abf2b95f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.tsx:28',message:'Store logging ERROR',data:{error:String(err)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
-  }
-  // #endregion
   const toggleFlowType = useStore(s => s.toggleFlowType);
   const glowZTL = useStore(s => s.glowZTL);
   const setGlowZTL = useStore(s => s.setGlowZTL);
@@ -108,11 +93,6 @@ export default function App() {
     } catch {}
   }, [flows, updateFlow]);
 
-  // #region agent log
-  try {
-    fetch('http://127.0.0.1:7243/ingest/805d96a4-16fd-497c-a6cf-f845abf2b95f',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.tsx:96',message:'Before return JSX',data:{},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-  } catch {}
-  // #endregion
   return (
     <div className="app">
       <Disclaimer />

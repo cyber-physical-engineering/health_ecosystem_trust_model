@@ -3,6 +3,7 @@ import { useStore } from "@state/store";
 import { FEATURE_NEW_ROI_MATH, DEV } from "@domain/flags";
 import { interopFactor, cadenceFactor as cadenceFactorV2, clamp as clampV2, volumeBoost, partyDrag, speedToPilotBoost, speedToPilotScore01 } from "@domain/math";
 import { narrativeToScore, strategicFitOf } from "@domain/roi";
+import { isBaaGap } from "@domain/compliance";
 import { useEffect } from "react";
 
 export function Metrics() {
@@ -278,10 +279,8 @@ export function Metrics() {
 
   // Compliance counters (sync with canvas/legend semantics)
   const actorById = useMemo(() => new Map(actors.map(a => [a.id, a])), [actors]);
-  const isCE = (t?: string) => ["Provider","Hospital","Payer","PharmaMfg"].includes(String(t));
-  const isBA = (t?: string) => ["PBM","EHRVendor","CRO","CMO","Lab","Pharmacy"].includes(String(t));
   const baaGaps = useMemo(() => {
-    return visibleFlows.filter(f => f.type === "data" && (f.sensitivity ?? 0) >= 60 && isCE(actorById.get(f.from)?.type) && isBA(actorById.get(f.to)?.type)).length;
+    return visibleFlows.filter(f => isBaaGap(f, actorById.get(f.from), actorById.get(f.to))).length;
   }, [visibleFlows, actorById]);
   const linkedPairs = useMemo(() => {
     const set = new Set<string>();
@@ -301,7 +300,7 @@ export function Metrics() {
         const to = actorNameById.get(e.to) || "?";
         return `${idx + 1}. ${from} -> ${to} — ${e.label || e.type} — ${fmt(need)}`;
       });
-      const text = `Top targets (BD focus)\n${lines.join("\n")}`;
+      const text = `Top flows by dollar need\n${lines.join("\n")}`;
       await (navigator as any).clipboard?.writeText?.(text);
     } catch {}
   };
@@ -543,9 +542,9 @@ export function Metrics() {
         )}
       </div>
       <div style={{ marginTop: 8 }}>
-        <div className="label">Top targets (BD focus)</div>
+        <div className="label">Top flows by dollar need</div>
         <div className="row" style={{ marginTop: 4 }}>
-          <button className="btn" onClick={copyTopTargets}>Copy targets</button>
+          <button className="btn" onClick={copyTopTargets}>Copy list</button>
         </div>
         {topTargets.length === 0 ? (
           <div className="small" style={{ marginTop: 4, color: "var(--muted)" }}>None in current view</div>
