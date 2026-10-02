@@ -117,10 +117,10 @@ export function Legend() {
           </div>
           <div style={{ display: "flex", alignItems: "center", marginTop: 4 }}>
             <LineSample color="#e879f9" dashed />
-            <span>BAA gap: CE→BA high-sensitivity data flagged</span>
+            <span>BAA gap: sensitive data from a provider, hospital or payer to a PBM, EHR vendor, CRO or CMO, with no BAA recorded</span>
           </div>
           <div style={{ marginTop: 4 }}>
-            - When "ZTL insertion points" is enabled, high-risk flows (trust gap ≥ 60 and sensitivity ≥ 60) are highlighted in white; money edges get a subtle purple glow
+            - With "ZTL insertion points" on, flows with trust gap ≥ 60 and sensitivity ≥ 60 are drawn in white (money flows in purple). ZTL is the ZeroTrust Ledger.
           </div>
           <div style={{ marginTop: 4 }}>
             - (est.) indicates modeled dollar values for data flows; money flows use actual dollars when provided

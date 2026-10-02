@@ -12,6 +12,7 @@ import dagre from "cytoscape-dagre";
 import svg from "cytoscape-svg";
 import { useStore } from "@state/store";
 import type { Actor, FlowType } from "@domain/schema";
+import { isBaaGap } from "@domain/compliance";
 
 cytoscape.use(dagre);
 cytoscape.use(svg as any);
@@ -296,9 +297,7 @@ export function GraphCanvas() {
         classes: (() => {
           const from = actorById.get(f.from);
           const to = actorById.get(f.to);
-          const isCE = (t?: Actor["type"]) => ["Provider","Hospital","Payer","PharmaMfg"].includes(String(t));
-          const isBA = (t?: Actor["type"]) => ["PBM","EHRVendor","CRO","CMO","Lab","Pharmacy"].includes(String(t));
-          const baaGap = f.type === "data" && (f.sensitivity ?? 0) >= 60 && from && to && isCE(from.type) && isBA(to.type);
+          const baaGap = isBaaGap(f, from, to);
           return baaGap ? "baa-gap" : "";
         })()
       }));

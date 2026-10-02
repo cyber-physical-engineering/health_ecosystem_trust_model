@@ -21,7 +21,7 @@ export function Disclaimer() {
       <span style={{ display: "flex", gap: "8px", alignItems: "center" }}>
         <span style={{ background: "rgba(0,0,0,0.2)", padding: "2px 6px", borderRadius: "4px", fontSize: "11px", fontWeight: "bold", textTransform: "uppercase", letterSpacing: "0.5px" }}>Disclaimer</span>
         <span>
-          This model uses illustrative data and opinionated economic theories. It is <b>not</b> a verified security audit.
+          Illustrative data and a hand-weighted heuristic. It is <b>not</b> a measurement or a security audit.
         </span>
       </span>
       <button

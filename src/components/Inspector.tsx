@@ -2,6 +2,7 @@ import { useStore } from "@state/store";
 import { FEATURE_NEW_ROI_MATH } from "@domain/flags";
 import { interopFactor, cadenceFactor as cadenceFactorV2, clamp as clampV2, volumeBoost, partyDrag, speedToPilotBoost, speedToPilotScore01 } from "@domain/math";
 import { narrativeToScore, strategicFitOf } from "@domain/roi";
+import { isBaaGap } from "@domain/compliance";
 
 export function Inspector() {
   const selection = useStore((s) => s.selection);
@@ -74,29 +75,27 @@ export function Inspector() {
     const fromActor = actors.find((a) => a.id === flow.from);
     const toActor = actors.find((a) => a.id === flow.to);
 
-    // Compliance recommendations (lightweight heuristics)
-    const isCE = (t?: string) => ["Provider","Hospital","Payer","PharmaMfg"].includes(String(t));
-    const isBA = (t?: string) => ["PBM","EHRVendor","CRO","CMO","Lab","Pharmacy"].includes(String(t));
+    // Related controls (a starting point, not advice)
     const sensitivity = flow.sensitivity ?? 0;
     const trustGap = flow.trustGap ?? 0;
     const isData = flow.type === "data";
-    const baaGap = isData && sensitivity >= 60 && isCE(fromActor?.type) && isBA(toActor?.type);
+    const baaGap = isBaaGap(flow, fromActor, toActor);
     const highRisk = isData && sensitivity >= 60 && trustGap >= 60;
 
     type Rec = { text: string; cites?: string[] };
     const recs: Rec[] = [];
     if (baaGap) {
       recs.push(
-        { text: "Execute/update Business Associate Agreement (BAA)", cites: [
+        { text: "Put a business associate agreement in place, or update the one you have", cites: [
           "HIPAA 45 CFR 164.502(e)", "HIPAA 45 CFR 164.504(e)"
         ]},
-        { text: "Limit to minimum necessary PHI", cites: ["HIPAA 45 CFR 164.502(b)"]},
-        { text: "Vendor risk assessment + evidence (e.g., SOC 2, HITRUST)", cites: [
+        { text: "Share only the minimum necessary PHI", cites: ["HIPAA 45 CFR 164.502(b)"]},
+        { text: "Assess the vendor's security and keep the evidence (a SOC 2 report, for example)", cites: [
           "HIPAA 45 CFR 164.308(a)(1)(ii)(A) Risk analysis",
           "HIPAA 45 CFR 164.308(b)(1) Business associate arrangements",
           "HIPAA 45 CFR 164.308(a)(8) Evaluation"
         ]},
-        { text: "Define incident reporting and breach notification timelines", cites: [
+        { text: "Agree on incident reporting and breach notification timelines", cites: [
           "HIPAA 45 CFR 164.410 (BA notification)", "HIPAA 45 CFR 164.404–406 (Notification)"
         ]}
       );
@@ -108,20 +107,20 @@ export function Inspector() {
           "HIPAA 45 CFR 164.312(a)(2)(iv) Encryption (addressable)",
           "FDA 21 CFR Part 11 (11.10) Controls for electronic records"
         ]},
-        { text: "Enable immutable access logging + alerting", cites: [
+        { text: "Keep access logs a reviewer can check for changes, and alert on them", cites: [
           "HIPAA 45 CFR 164.312(b) Audit controls",
           "HIPAA 45 CFR 164.308(a)(1)(ii)(D) Information system activity review",
           "FDA 21 CFR 11.10(e) Secure, computer-generated, time-stamped audit trails"
         ]},
-        { text: "MFA for privileged access; least privilege RBAC", cites: [
+        { text: "Multi-factor authentication for privileged access, and least-privilege roles", cites: [
           "HIPAA 45 CFR 164.312(d) Person/entity authentication",
           "HIPAA 45 CFR 164.308(a)(4) Information access management",
           "HIPAA 45 CFR 164.312(a)(1) Access control"
         ]},
-        { text: "Data Loss Prevention on outbound PHI", cites: [
+        { text: "Data loss prevention on outbound PHI", cites: [
           "HIPAA 45 CFR 164.312(e)(1)", "HIPAA 45 CFR 164.308(a)(1)(ii)(A) Risk analysis"
         ]},
-        { text: "Continuous monitoring of this interface", cites: [
+        { text: "Monitor this interface continuously", cites: [
           "HIPAA 45 CFR 164.308(a)(1)(ii)(D) Activity review",
           "HIPAA 45 CFR 164.308(a)(8) Evaluation"
         ]}
@@ -133,7 +132,7 @@ export function Inspector() {
           "HIPAA 45 CFR 164.308(a)(3) Workforce security (role-based)",
           "NIST SP 800-53 AC-5 Separation of Duties (mapping)"
         ]},
-        { text: "Tamper-evident audit trail for financial events", cites: [
+        { text: "An audit trail for financial events that a reviewer can check for changes", cites: [
           "HIPAA 45 CFR 164.312(b) Audit controls",
           "FDA 21 CFR 11.10(e) Audit trails"
         ]}
@@ -530,7 +529,7 @@ export function Inspector() {
         )}
         {recs.length > 0 && (
           <div style={{ marginTop: 16 }}>
-            <div className="label">Compliance recommendations</div>
+            <div className="label">Related controls (a starting point, not advice)</div>
             <ul className="small" style={{ lineHeight: 1.6, margin: "8px 0 0 16px" }}>
               {recs.map((r, i) => (
                 <li key={i} style={{ marginBottom: 6 }}>
