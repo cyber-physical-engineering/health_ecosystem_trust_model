@@ -4,6 +4,8 @@ A local web app that maps US healthcare roles and the data, money and audit flow
 
 **Status: prototype.** 13 unit tests pass and `npm run build` passes with one bundle-size warning (October 2, 2026; Node 22.19.0, Apple Silicon Mac). The dev server and the production preview both serve the page.
 
+[![Pages](https://github.com/cyber-physical-engineering/health_ecosystem_trust_model/actions/workflows/pages.yml/badge.svg)](https://github.com/cyber-physical-engineering/health_ecosystem_trust_model/actions/workflows/pages.yml)
+
 James Thornton set the architecture and requirements. The code was written with AI-assisted development in late 2025. The tests and checks were re-run in October 2026.
 
 ![The model at first load: a graph of 13 roles and 34 flows beside the Inspector panel](docs/screenshot.png)
