@@ -6,6 +6,8 @@ A local web app that maps US healthcare roles and the data, money and audit flow
 
 James Thornton set the architecture and requirements. The code was written with AI-assisted development in late 2025. The tests and checks were re-run in October 2026.
 
+![The model at first load: a graph of 13 roles and 34 flows beside the Inspector panel](docs/screenshot.png)
+
 ## What it does
 
 - Draws 13 actor roles (provider, payer, drug maker, PBM, regulator and others) and 34 flows (17 data, 10 money, 7 audit) with Cytoscape.js and the dagre layout. The roles are generic, not organizations.
