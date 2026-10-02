@@ -60,3 +60,7 @@ The 13 tests cover the domain helpers: the ROI arithmetic (`src/domain/math.test
 - The Inspector's control prompts are generic reminders with the HIPAA paragraphs they relate to. They are a starting point for a reviewer, not advice and not a compliance finding.
 - Import does not check that a flow's endpoints exist. A flow that points at a missing actor is dropped silently when the graph draws.
 - The production bundle is one chunk of about 875 kB (274 kB gzipped).
+
+## License
+
+MIT. See [LICENSE](LICENSE).
