@@ -1,6 +1,6 @@
 # Health Ecosystem Trust Model
 
-A local web app that maps US healthcare roles and the data, money and audit flows between them. Each flow carries scores for sensitivity, friction and trust gap, and a heuristic turns those into a ranked list of where cryptographic proof might be worth adding. The numbers are illustrative; this is a modeling tool, not a measurement.
+A web app that maps US healthcare roles and the data, money and audit flows between them. Each flow carries scores for sensitivity, friction and trust gap, and a heuristic turns those into a ranked list of where cryptographic proof might be worth adding. The numbers are illustrative; this is a modeling tool, not a measurement.
 
 **Status: prototype.** 13 unit tests pass and `npm run build` passes with one bundle-size warning (October 2, 2026; Node 22.19.0, Apple Silicon Mac). The dev server and the production preview both serve the page.
 
@@ -9,6 +9,8 @@ A local web app that maps US healthcare roles and the data, money and audit flow
 James Thornton set the architecture and requirements. The code was written with AI-assisted development in late 2025. The tests and checks were re-run in October 2026.
 
 ![The model at first load: a graph of 13 roles and 34 flows beside the Inspector panel](docs/screenshot.png)
+
+Live demo: https://cyber-physical-engineering.github.io/health_ecosystem_trust_model/ (the model lives in your browser; nothing is sent anywhere)
 
 ## What it does
 
